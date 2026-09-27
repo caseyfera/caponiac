@@ -1,1 +1,313 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CAPONIAC | Official Site</title>
+    <style>
+        @font-face {
+            font-family: 'KingdomCrown-lxdzD';
+            src: url('KingdomCrown-lxdzD.otf');
+        }
+
+        /* --- GENERAL STYLES --- */
+        body { background-color: #cfcfd1; font-family: Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        .center { text-align: center; }
+        
+        /* --- NAVBAR --- */
+        .navbar { 
+            background: white; z-index: 1000; width: 100%; position: fixed; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 40px; top: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 90px; box-sizing: border-box;
+        }
+        .nav-logo { font-family: 'KingdomCrown-lxdzD'; font-size: 3.1rem; color: #1d84d5; text-decoration: none; }
+        .nav-right-side { display: flex; align-items: center; }
+        .nav-socials { display: flex; gap: 15px; margin-right: 30px; }
+        .nav-socials img { width: 30px; height: 30px; }
+        .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; }
+        .nav-item { margin-left: 20px; }
+        .nav-link { font-size: 1.1rem; color: #475569 !important; font-weight: 600; text-decoration: none; }
+        .nav-link:hover { color: #1d84d5 !important; }
+
+        /* --- HAMBURGER ANIMATION (Asterisk Effect) --- */
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { 
+            display: block; width: 28px; height: 3px; margin: 6px auto; 
+            background-color: #101010; transition: all 0.3s ease-in-out; 
+        }
+        .hamburger.active .bar:nth-child(2) { opacity: 0; }
+        .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); background-color: #1d84d5; }
+        .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); background-color: #1d84d5; }
+
+        /* --- SECTIONS --- */
+        .backgroundPurple { background-color: #151515; padding: 80px 20px; color: white; border-bottom: 5px solid #000; }
+        h2 { color: #1d84d5 !important; text-align: center; font-size: 30px; margin-bottom: 30px; text-transform: uppercase; }
+        h3 { font-size: 35px; color: white; }
+
+        /* --- VIDEOS --- */
+        .video-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        iframe { border: none; max-width: 100%; }
+
+        /* --- DISCOGRAPHY --- */
+        .centertable { margin: auto; border-spacing: 15px; border-collapse: separate; }
+        .album-container {
+            position: relative; width: 220px; height: 220px; overflow: hidden;
+            margin: auto; border: 1px solid #333; background: #222;
+        }
+        .album-container img { width: 100%; height: 100%; display: block; transition: 0.5s; object-fit: cover; }
+        .album-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.95);
+            width: 100%; height: 0; transition: 0.5s; display: flex;
+            flex-direction: column; justify-content: center; align-items: center; opacity: 0;
+        }
+        .album-container:hover .album-overlay { height: 100%; opacity: 1; }
+        .buy-btn {
+            color: white !important; border: 1px solid #1d84d5; padding: 8px;
+            margin: 5px; width: 85%; text-align: center; font-size: 10px; font-weight: bold; text-decoration: none;
+        }
+        .buy-btn:hover { background: #1d84d5; }
+
+        /* --- ART SLIDESHOW --- */
+        .slideshow-container { position: relative; max-width: 500px; margin: auto; height: 400px; }
+        .mySlides { display: none; text-align: center; }
+        .fit { width: 100%; height: 300px; object-fit: contain; }
+        .prev, .next {
+            cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
+            margin-top: -22px; color: white; font-weight: bold; font-size: 18px;
+            transition: 0.6s ease; border-radius: 0 3px 3px 0; user-select: none; z-index: 101;
+        }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .dot { cursor: pointer; height: 15px; width: 15px; margin: 0 2px; background-color: #bbb; border-radius: 50%; display: inline-block; transition: 0.6s; }
+        .active, .dot:hover { background-color: #1d84d5; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 1200px) {
+            .nav-menu {
+                position: fixed; left: -100%; top: 90px; flex-direction: column;
+                background: white; width: 100%; transition: 0.3s; padding: 40px 0;
+            }
+            .nav-menu.active { left: 0; }
+            .hamburger { display: block; }
+            .centertable tr { display: block; text-align: center; }
+            .centertable td { display: inline-block; }
+            iframe { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="nav-logo">CAPONIAC</a>
+            <div class="nav-right-side">
+                <div class="nav-socials">
+                    <a href="https://www.youtube.com/user/caseyfera" target="_blank"><img src="images/social/youtube.svg" alt="youtube"></a>
+                    <a href="https://m.facebook.com/casey.fera" target="_blank"><img src="images/social/facebook.svg" alt="facebook"></a>
+                    <a href="https://www.instagram.com/caseyfera/" target="_blank"><img src="images/social/instagram-round.svg" alt="instagram"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#s1" class="nav-link">VIDEOS</a></li>
+                    <li class="nav-item"><a href="#s2" class="nav-link">DISCOGRAPHY</a></li>
+                    <li class="nav-item"><a href="#s3" class="nav-link">SHOWS</a></li>
+                    <li class="nav-item"><a href="#s4" class="nav-link">STORE</a></li>
+                    <li class="nav-item"><a href="#s5" class="nav-link">INFO</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div style="margin-top: 150px; text-align: center; padding-bottom: 50px;">
+        <img src="images/rtVckwDiHUQ-SD.jpg" width="280" alt="Caponiac Headshot">
+    </div>
+
+    <div class="backgroundPurple" id="s1">
+        <h2>VIDEOS</h2>
+        <div class="video-grid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/rtVckwDiHUQ?controls=0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/BHG54hjXADI?controls=0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/k-y5wARQkSE?controls=0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/thsK384aCvA?controls=0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/PeRcgm8k6Cs?controls=0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/C1eWJ8QDMcE?controls=0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="backgroundPurple" id="s2">
+        <h2>DISCOGRAPHY</h2>
+        <table class="centertable">
+            <tr>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ee/a0/ee/eea0ee0a-b01c-1aff-5799-81934947d9c0/199633611155-copy-0e0750bf.png/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/we-could-be-friends-remix-single/1840516562" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/2a/59/e22a5986-240f-b90e-ff44-48df464773fb/198447798557-copy-3a8a6166.png/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/in/album/netflix-chill-single/1747327927" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/10/aa/db/10aadba2-65b4-4d1e-8c66-bc706fd45cea/198160014453-copy-615998c6.jpg/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/in/album/cali-born-single/1718754431" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/26/7c/e9267ce3-2b84-42ec-0c33-8c866ddc4f91/197985901795.jpg/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/in/album/805-single-feat-ses-nut-ty-cuts-single/1717449187" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+            </tr>
+            <tr>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c0/0a/f1/c00af1e9-47c7-2ba0-0fca-cfc2e922521c/197743115129.jpg/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/in/album/cold-world-single/1690813624" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/5b/de/9b/5bde9b34-397a-aa8f-198b-da3ed13fb339/196815928056.png/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/my-day/1644174117?i=1644174121" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/5a/16/56/5a165691-c83b-92ef-d428-af235c0666a8/artwork.jpg/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/this-yall-game-feat-e-truly-caponiac-single/1509656386" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4c/30/c2/4c30c2a7-3b3e-781a-d025-34451c1ea15f/628810089420.png/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/talking-about-me-feat-caponiac-single/1450196487" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+            </tr>
+            <tr>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/59/54/26/59542613-90ac-f202-500d-720eb21d8e7d/628810531868.png/296x296bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/put-it-in-your-mouth-single/1472138180" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/22/5c/73/225c735b-dd19-486a-240d-7fd5817926ec/628810081950.png/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/artist/caponiac/269791320" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/46/d7/05/46d705f5-4722-7a28-2d6d-9efbf71e3c6f/800739755772.png/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/yac-23-vol-2/1435698547" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a5/66/80/a56680a3-c9a2-c1ab-d384-2701fa3cebdb/800739136632.png/296x296bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/late-night-session-feat-fud-single/1288689852" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+            </tr>
+            <tr>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/77/10/cb/7710cb7d-035e-603d-2eae-10ff246f56de/204046.jpg/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/bacc-n-da-game/905125717" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/99/6a/ae/996aae14-2835-dde9-54af-ccf392df18cb/196236.jpg/296x296bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/in/album/loungin-feat-pleasant-russell-single/858341352" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://m.media-amazon.com/images/I/81domlmxKZL._SL1500_.jpg">
+                    <div class="album-overlay"><a href="https://www.amazon.com/Caponiac-Anthony-Jordan/dp/B00063TPNE" target="_blank" class="buy-btn">AMAZON STORE</a></div>
+                </div></td>
+                <td><div class="album-container">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/25/59/e5/mzi.nhkzmfsj.tif/316x316bb.webp">
+                    <div class="album-overlay"><a href="https://music.apple.com/us/album/caponiac-1st-born/269791312" target="_blank" class="buy-btn">APPLE MUSIC</a></div>
+                </div></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="backgroundPurple" id="s3">
+        <h2>SHOWS / ART</h2>
+        <div class="slideshow-container">
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+
+            <div class="mySlides fade">
+                <img class="fit" src="images/art/kneel before zod Cy4 done no reflection.jpg">
+                <div class="center">Ritual</div>
+            </div>
+            <div class="mySlides fade">
+                <img class="fit" src="images/art/z.jpg">
+                <div class="center">Glitch</div>
+            </div>
+            <div class="mySlides fade">
+                <img class="fit" src="images/art/cap.png">
+                <div class="center">Captive</div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top: 20px;">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
+    <div class="backgroundPurple" id="s4">
+        <h2>STORE</h2>
+        <p class="center">Exclusive Merchandise coming soon.</p>
+    </div>
+
+    <div class="backgroundPurple" id="s5" style="border-bottom: none;">
+        <div class="center">
+            <h2>INFO</h2>
+            <p style="max-width: 900px; margin: auto; line-height: 1.8; font-size: 1.1rem; color: #fff;">
+                <a href="https://music.apple.com/us/artist/caponiac/269791320" target="_blank" style="color: #1d84d5; font-weight: bold; text-decoration:none;">Caponiac</a> 
+                is the stage name of Anthony Jordan, a US gangsta rapper from 
+                <a href="https://www.google.com/maps/search/Lompoc,+California" target="_blank" style="color: #1d84d5; text-decoration:none;">Lompoc, California</a>, 
+                known for his Central Coast hip-hop. Releasing music since the late 90s, with popular tracks like 
+                "We Could Be Friends (Remix)" and albums like 
+                <a href="https://music.apple.com/us/album/bacc-n-da-game/905125717" target="_blank" style="color: #1d84d5; text-decoration:none;">Bacc N da Game</a>, 
+                and has been active on platforms like 
+                <a href="https://music.apple.com/us/artist/caponiac/269791320" target="_blank" style="color: #1d84d5; text-decoration:none;">Apple Music</a>, 
+                <a href="#" style="color: #1d84d5; text-decoration:none;">Spotify</a>, 
+                and <a href="https://www.discogs.com/artist/1944633-Caponiac" target="_blank" style="color: #1d84d5; text-decoration:none;">Discogs</a>.
+            </p>
+            
+            <div style="margin-top: 60px;">
+                <h3 style="color: #1d84d5; text-transform: uppercase; margin-bottom: 15px;">Contact:</h3>
+                <h2 style="margin: 10px 0;">
+                    <a href="tel:8055914839" style="color: #fff; text-decoration:none; font-size: 24px;">Phone: (805) 591-4839</a>
+                </h2>
+                <h2 style="margin: 10px 0;">
+                    <a href="mailto:me@caseyfera.com" style="color: #fff; text-decoration:none; font-size: 24px;">Email: me@caseyfera.com</a>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger Menu & Asterisk Animation
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.onclick = () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        }
+
+        document.querySelectorAll(".nav-link").forEach(n => n.onclick = () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        });
+
+        // Slideshow Logic
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) { showSlides(slideIndex += n); }
+        function currentSlide(n) { showSlides(slideIndex = n); }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
+            if(slides[slideIndex-1]) slides[slideIndex-1].style.display = "block";  
+            if(dots[slideIndex-1]) dots[slideIndex-1].className += " active";
+        }
+    </script>
+
+</body>
+</html>
